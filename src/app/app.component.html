@@ -1,0 +1,25 @@
+<div class="container">
+  <!-- user-input component -->
+  <!-- user-input component contains two event emitter property objects that pass out the newServerName and newServerContent -->
+  <!-- the $event that is then passed to the app.component is taken in and strictly the properties are defined, and then pushed to our bigger serverElements array to be then rendered to the page by *ngFor -->
+  <app-user-input
+    (serverAdded)="onServerAdded($event)"
+    (bpCreated)="onBlueprintAdded($event)"
+  >
+  </app-user-input>
+  <hr />
+
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- each server element -->
+      <app-server-element *ngFor="let serverElement of serverElements" [element]="serverElement">
+        <p #serverContents>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p >
+      </app-server-element>
+    </div>
+  </div>
+</div>
+
+<!-- <app-server-element></app-server-element> -->
